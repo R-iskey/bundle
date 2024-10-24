@@ -5,4 +5,6 @@ module.exports = {
     extend: {},
   },
   plugins: [],
+  safelist: [{ pattern: /^swiper-/ }],
+  darkMode: 'class'
 }

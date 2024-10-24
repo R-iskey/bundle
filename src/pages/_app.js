@@ -1,5 +1,5 @@
 import Navbar from '@/components/Navbar'
-import '@/styles/globals.css'
+import '@/styles/globals.scss'
 
 export default function App({ Component, pageProps }) {
   return (
@@ -8,7 +8,6 @@ export default function App({ Component, pageProps }) {
         <Navbar />
       </div>
       <Component {...pageProps} />
-
     </>
   )
 }

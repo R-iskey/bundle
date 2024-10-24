@@ -13,7 +13,7 @@ const Navbar = () => {
     <div className='max-w-screen-xl mx-auto p-4 '>
       <nav className="flex h-9 items-center justify-between" aria-label="Global">
         <div className="flex lg:min-w-0 lg:flex-1" aria-label="Global">
-          <a href="#" className="-m-1.5 p-1.5">
+          <a href="/" className="-m-1.5 p-1.5">
             <span className="sr-only">Your Company</span>
             {/* <img className="h-8" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="" /> */}
             <h2 className='inline-block rounded-lg  py-2 text-2xl leading-6 text-black font-bold '>CodeBuz</h2>
@@ -35,6 +35,8 @@ const Navbar = () => {
           <div className="hidden lg:flex lg:min-w-0 lg:flex-1 lg:gap-x-1">
             <Link to="home" spy={true} smooth={true} offset={-80} duration={500}
                   className="font-semibold text-gray-900 hover:text-gray-900 hover:bg-zinc-200 py-2 px-4 rounded-md cursor-pointer">Home</Link>
+            <Link to="about" spy={true} smooth={true} offset={-80} duration={500}
+                  className="font-semibold text-gray-900 hover:text-gray-900 hover:bg-zinc-200 py-2 px-4 rounded-md cursor-pointer">About us</Link>
             <Link to="blogs" spy={true} smooth={true} offset={-30} duration={500}
                   className="font-semibold text-gray-900 hover:text-gray-900 hover:bg-zinc-200 py-2 px-4 rounded-md cursor-pointer">Bundles</Link>
           </div>
@@ -70,6 +72,9 @@ const Navbar = () => {
                 <Link to="home" spy={true} smooth={true} offset={-80} duration={500}
                       className="-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-300"
                       onClick={handleNav}>Home</Link>
+                <Link to="about" spy={true} smooth={true} offset={-80} duration={500}
+                      className="-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-300"
+                      onClick={handleNav}>About us</Link>
 
                 <Link to="blogs" spy={true} smooth={true} offset={-80} duration={500}
                       className="-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-300"

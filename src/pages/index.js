@@ -1,30 +1,34 @@
-import BlogCard from '@/components/BlogCard'
+import Bundles from '@/components/Bundles'
 import Footer from '@/components/Footer'
 import Hero from '@/components/Hero'
-import Pricing from '@/components/Pricing'
 import Stats from '@/components/Stats'
 import React from 'react'
+import AboutUs from '@/components/AboutUs';
 
 const index = () => {
   return (
-    <div className=' mx-auto'>
+    <div className='h-full mx-auto'>
       {/* <Navbar /> */}
-      <div className='py-32 h-screen justify-center items-center bg-gray-900' id='home'>
-        <Hero />
+      <div className='justify-center items-center bg-gradient-to-r from-gray-800 via-gray-900 to-indigo-900' id='home'>
+        <Hero/>
+      </div>
+      <div className='mt-20' id={'about'}>
+        <AboutUs/>
       </div>
       <div className='mt-20'>
-        <Stats />
+        <Stats/>
       </div>
-      <div className='mt-20 max-w-screen-xl px-4 mx-auto  ' id='blogs' >
-        <BlogCard />
+      <div className='mt-20 mx-auto' id='blogs'>
+        <Bundles/>
       </div>
+
 
       {/*<div className='mt-20' id='price'>*/}
       {/*  <Pricing />*/}
       {/*</div>*/}
 
       <div>
-        <Footer />
+        <Footer/>
       </div>
     </div>
   )
