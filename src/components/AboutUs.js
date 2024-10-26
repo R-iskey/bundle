@@ -17,7 +17,7 @@ const Stats = () => {
           </div>
         </div>
       </div>
-      <div className={'mt-3'}>
+      <div className={`mt-3 mx-auto max-w-screen-xl`}>
         <img
           src={'https://kronosexperience.com/wp-content/uploads/2021/12/Team-building-promotes-teamwork-which-fosters-success-in-a-business.-Here-is-how-and-why-you-should-be-implementing-team-building..jpeg'}/>
       </div>

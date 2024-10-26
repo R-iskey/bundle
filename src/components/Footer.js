@@ -1,31 +1,29 @@
 import React from 'react'
 import Link from 'next/link';
+import {FaEnvelope, FaPhone} from 'react-icons/fa';
 
 const Footer = () => {
   return (
-    <div>
-      <footer aria-label="Site Footer" className="bg-white className='mt-16 border-t border-gray-100 pt-8'">
-        <div className="max-w-screen-xl px-4  pb-8 mx-auto sm:px-6 lg:px-8 ">
-          <div className="mt-16 grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-32">
-            <div className="mx-auto max-w-sm lg:max-w-none">
-              <h3>Company Name</h3>
-              <div className='flex col gap-5 text-gray-700 text-md pt-4 justify-center sm:justify-start'>
-                {/*<FaFacebook/>*/}
-                {/*<FaInstagram/>*/}
-                {/*<FaTwitter/>*/}
-                {/*<FaSnapchatGhost/>*/}
-                {/*<FaWhatsapp/>*/}
-                <Link href={'/privacy'}>Privacy</Link>
-                <Link href={'/refund'}>Refund Policy</Link>
-              </div>
-
-            </div>
+      <footer aria-label="Site Footer" className="bg-white text-gray-800 mt-4">
+        <div className="grid grid-cols-1 lg:grid-cols-3  py-4 px-6">
+          <div className={'flex flex-col gap-3'}>
+            <div className={''}>Site Name</div>
+            <div className={'flex items-center gap-2'}><FaPhone /><a href={'tel:(206) 672-5052'} className={'hover:underline'}>(206) 672-5052</a></div>
+            <div className={'flex items-center gap-2'}><FaEnvelope /><a href={'support@rushtranslate.com'} className={'hover:underline'}>support@rushtranslate.com</a></div>
+          </div>
+          <div className={'flex flex-col gap-4'}>
+            <div className={''}></div>
+            <Link href={'/privacy'}  className={'hover:underline'}>Privacy and Policy </Link>
+            <Link href={'/refund'}  className={'hover:underline'}>Refund policy</Link>
+          </div>
+        </div>
+        <div className={'border-t border-gray-100 py-2'}>
+          <div className={'w-[300px] mx-auto'}>
+            All right reserved A Company {(new Date()).getFullYear()}
           </div>
         </div>
 
       </footer>
-
-    </div>
   )
 }
 

@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 
-const useFetch = (url) => {
+const useFetch = (url, options = { enable: true}) => {
   const [data, setData] = useState();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -18,8 +18,10 @@ const useFetch = (url) => {
       }
     };
 
-    fetchData();
-  }, [url]);
+    if (options.enable) {
+      fetchData();
+    }
+  }, [url, options.enable]);
 
   return {data, loading, error};
 };
