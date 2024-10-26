@@ -1,20 +1,22 @@
-import React, { useState, useEffect } from 'react';
-import { loadStripe } from '@stripe/stripe-js';
-import { Elements, CardElement, useStripe, useElements, PaymentRequestButtonElement } from '@stripe/react-stripe-js';
+import React, {useEffect, useState} from 'react';
+import {loadStripe} from '@stripe/stripe-js';
+import {CardElement, Elements, PaymentRequestButtonElement, useElements, useStripe} from '@stripe/react-stripe-js';
+import { FaCcVisa, FaApplePay, FaGooglePay } from 'react-icons/fa';
 
 const stripePromise = loadStripe('pk_test_qoKFOt8qV0DGmJiIQZyLzNWl');
 
-const StripeForm = ({ productData }) => {
+const StripeForm = ({productData}) => {
   const stripe = useStripe();
   const elements = useElements();
 
   const [email, setEmail] = useState('');
   const [errorMessage, setErrorMessage] = useState(null);
-  const [paymentRequest, setPaymentRequest] = useState(null);
   const [successMessage, setSuccessMessage] = useState(null); // Success message state
+  const [paymentMethod, setPaymentMethod] = useState('card'); // Default to card
+  const [paymentRequest, setPaymentRequest] = useState(null);
 
   useEffect(() => {
-    if (stripe) {
+    if (stripe && paymentMethod === 'appleGooglePay') {
       const pr = stripe.paymentRequest({
         country: 'US',
         currency: 'usd',
@@ -26,18 +28,19 @@ const StripeForm = ({ productData }) => {
         requestPayerEmail: true,
       });
 
-      pr.canMakePayment().then(result => {
-        console.log(result);
+      pr.canMakePayment().then((result) => {
         if (result) {
           setPaymentRequest(pr);
+        } else {
+          setPaymentRequest(null);
         }
       });
 
       pr.on('paymentmethod', async (event) => {
-        const { paymentIntent, error } = await stripe.confirmCardPayment(
+        const {paymentIntent, error} = await stripe.confirmCardPayment(
           'YOUR_CLIENT_SECRET', // Obtain from your backend
-          { payment_method: event.paymentMethod.id },
-          { handleActions: false }
+          {payment_method: event.paymentMethod.id},
+          {handleActions: false}
         );
 
         if (error) {
@@ -49,7 +52,7 @@ const StripeForm = ({ productData }) => {
         }
       });
     }
-  }, [stripe, productData]);
+  }, [stripe, productData, paymentMethod]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -58,24 +61,26 @@ const StripeForm = ({ productData }) => {
       return;
     }
 
-    const cardElement = elements.getElement(CardElement);
+    if (paymentMethod === 'card') {
+      const cardElement = elements.getElement(CardElement);
+      const {error, paymentMethod} = await stripe.createPaymentMethod({
+        type: 'card',
+        card: cardElement,
+        billing_details: {
+          email: email,
+        },
+      });
+      if (error) {
+        setErrorMessage(error.message);
+        setSuccessMessage(null);
 
-    const { error, paymentMethod } = await stripe.createPaymentMethod({
-      type: 'card',
-      card: cardElement,
-      billing_details: {
-        email: email,
-      },
-    });
-
-    if (error) {
-      setErrorMessage(error.message);
-      setSuccessMessage(null);
-
-    } else {
-      console.log('PaymentMethod created successfully:', paymentMethod);
-      setErrorMessage(null);
-      setSuccessMessage("Thank you for your purchase, we'll send your item via email address");
+      } else {
+        setErrorMessage(null);
+        setSuccessMessage("Thank you for your purchase, we'll send your item via email address");
+      }
+    } else if (paymentMethod === 'appleGooglePay' && paymentRequest) {
+      // Trigger the Payment Request Button when Pay Now is clicked
+      paymentRequest.show();
     }
   };
 
@@ -99,13 +104,36 @@ const StripeForm = ({ productData }) => {
         />
       </div>
 
-      {/* Payment Request Button or Card Element */}
-      {paymentRequest ? (
-        <PaymentRequestButtonElement
-          options={{ paymentRequest }}
-          className="mb-4"
-        />
-      ) : (
+      <div className="mb-4 relative">
+        <label className="block text-sm font-medium text-gray-700 mb-2">Select Payment Method</label>
+        <div className="flex space-x-4">
+          <button
+            type="button"
+            onClick={() => setPaymentMethod('card')}
+            className={`flex items-center px-4 py-2 border rounded-lg ${
+              paymentMethod === 'card' ? 'bg-indigo-700 text-white' : 'bg-gray-100 text-gray-700'
+            } hover:bg-indigo-800 hover:text-white transition-colors`}
+          >
+            <FaCcVisa className="mr-2"/> Card
+          </button>
+          <button
+            type="button"
+            onClick={() => setPaymentMethod('appleGooglePay')}
+            className={`flex items-center px-4 py-2 border rounded-lg ${
+              paymentMethod === 'appleGooglePay' ? 'bg-indigo-700 text-white' : 'bg-gray-100 text-gray-700'
+            } hover:bg-indigo-800 hover:text-white transition-colors`}
+          >
+            <FaApplePay className="mr-2"/> Apple Pay
+          </button>
+        </div>
+      </div>
+
+      {/* Conditionally Render Payment Method */}
+      {paymentMethod === 'appleGooglePay' && paymentRequest ? (
+        <div className="mb-4">
+          <PaymentRequestButtonElement options={{paymentRequest}}/>
+        </div>
+      ) : paymentMethod === 'card' ? (
         <div className="mb-4">
           <label htmlFor="card-element" className="block text-sm font-medium text-gray-700 mb-2">
             Card Details
@@ -130,32 +158,19 @@ const StripeForm = ({ productData }) => {
             />
           </div>
         </div>
-      )}
+      ) : null}
 
-      {/* Error Message */}
-      {errorMessage && (
-        <div className="text-red-500 text-sm mb-4">
-          {errorMessage}
-        </div>
-      )}
+      {/* Error and Success Messages */}
+      {errorMessage && <div className="text-red-500 text-sm mb-4">{errorMessage}</div>}
+      {successMessage && <div className="text-green-500 text-sm mb-4">{successMessage}</div>}
 
-      {/* Success Message */}
-      {successMessage && (
-        <div className="text-green-500 text-sm mb-4">
-          {successMessage}
-        </div>
-      )}
-
-      {/* Submit Button */}
-      {!paymentRequest && (
         <button
           type="submit"
           disabled={!stripe}
-          className="w-full py-2 px-4 bg-blue-600 text-white font-semibold rounded-md shadow hover:bg-blue-700 transition-colors"
+          className="w-full py-2 px-4 bg-gradient-to-r from-indigo-700 via-indigo-800 to-indigo-900 text-white font-semibold rounded-md shadow  transition-colors"
         >
           Pay Now
         </button>
-      )}
     </form>
   );
 };

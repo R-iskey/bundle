@@ -8,7 +8,11 @@ const PaymentPage = () => {
   const router = useRouter();
   const {productId} = router.query;
 
-  const {data: product} = useFetch(`/api/bundles/${productId}`, {enable: Boolean(productId)});
+  const {data: product, loading} = useFetch(`/api/bundles/${productId}`, {enable: Boolean(productId)});
+
+  if (loading) {
+    return null;
+  }
 
   return (
     <>

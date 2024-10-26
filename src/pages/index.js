@@ -21,12 +21,6 @@ const index = () => {
       <div className='mt-20 mx-auto' id='blogs'>
         <Bundles/>
       </div>
-
-
-      {/*<div className='mt-20' id='price'>*/}
-      {/*  <Pricing />*/}
-      {/*</div>*/}
-
       <div>
         <Footer/>
       </div>

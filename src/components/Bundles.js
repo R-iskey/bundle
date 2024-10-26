@@ -43,7 +43,7 @@ const Bundles = () => {
                     <p className="text-white mb-4 text-md">{item.description}</p>
                     <button
                       onClick={() => router.push(`/payment?productId=${item.id}`)}
-                      className="max-w-[190px] flex items-center justify-between  pl-3 pr-2 py-2 text-white font-lg font-semibold bg-gray-900 rounded-lg transition transform hover:scale-105 group-hover:bg-gradient-to-r group-hover:from-indigo-700 group-hover:via-indigo-900 group-hover:to-gray-900 focus:outline-none focus:ring-4 focus:ring-indigo-500 shadow-lg hover:shadow-xl">
+                      className="max-w-[190px] flex items-center justify-between  pl-3 pr-2 py-2 text-white font-lg font-semibold bg-gray-900 rounded-lg transition transform hover:scale-105 group-hover:bg-gradient-to-r group-hover:from-indigo-700 group-hover:via-indigo-800 group-hover:to-indigo-900 focus:outline-none focus:ring-4 focus:ring-indigo-500 shadow-lg hover:shadow-xl">
                     <span className="flex items-center">
                       <FaShoppingCart className="mr-2" size={16}/>
                       Buy Now
