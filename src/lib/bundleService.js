@@ -71,3 +71,7 @@ export function getBundleById(id) {
 export async function getBundles() {
   return bundles;
 }
+
+export function getTopBundles() {
+  return bundles.slice(0, -2)
+}

@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-scroll'
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
@@ -7,6 +6,7 @@ import "swiper/css/pagination";
 import {Autoplay, Pagination} from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import useFetch from '@/hooks/useFetch';
+import Link from 'next/link';
 
 const Hero = () => {
   const {data = []} = useFetch('/api/featured')
