@@ -18,9 +18,9 @@ const Navbar = () => {
       <nav className="flex h-9 items-center justify-between" aria-label="Global">
         <div className="flex lg:min-w-0 lg:flex-1" aria-label="Global">
           <a href="/" className="-m-1.5 p-1.5">
-            <span className="sr-only">Your Company</span>
+            <span className="sr-only">Translitix</span>
             {/* <img className="h-8" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="" /> */}
-            <h2 className='inline-block rounded-lg  py-2 text-2xl leading-6 text-black font-bold '>CodeBuz</h2>
+            <h2 className='inline-block rounded-lg  py-2 text-2xl leading-6 text-black font-bold '>Translitix</h2>
           </a>
         </div>
         <div className='flex'>
@@ -58,7 +58,7 @@ const Navbar = () => {
           <div focus="true" className="fixed inset-0 z-10 overflow-y-auto bg-white p-4 ">
             <div className="flex h-9 items-center justify-between">
               <div className="flex">
-                <h2 className='inline-block rounded-lg  py-2 text-2xl leading-6 text-black font-bold '>CodeBuz</h2>
+                <h2 className='inline-block rounded-lg  py-2 text-2xl leading-6 text-black font-bold '>Translitix</h2>
               </div>
               <div className="flex">
                 <button type="button" onClick={handleNav}
