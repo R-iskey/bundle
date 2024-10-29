@@ -22,18 +22,21 @@ const PaymentPage = () => {
 
           {
             !product ? <div>Product not found</div> : <>
-              <div className="flex flex-col items-start p-6 ">
-                <h1 className="text-3xl font-semibold mb-4">{product.name}</h1>
-                <p className="text-gray-700 mb-4">{product.description}</p>
-                <div className="text-lg font-medium text-gray-900 mb-6">
+              <div className="flex flex-col items-start p-6">
+                <div className={'flex gap-2 items-center'}>
+                  <img
+                    src={`icons/${product.image}.svg`} // Replace with actual product image URL
+                    alt={product.name}
+                    className="w-[72px] h-auto"
+                  />
+                  <h1 className="text-3xl font-semibold mb-4">{product.name}</h1>
+                </div>
+                <p className="text-gray-700 mb-4 mt-5 flex-1">{product.description}</p>
+                <div className="text-lg font-medium text-indigo-800 mb-6">
                   Price: ${(product.price / 100).toFixed(2)}
                 </div>
                 <div className="w-full">
-                  <img
-                    src={product.image} // Replace with actual product image URL
-                    alt={product.name}
-                    className="w-full h-auto rounded-lg shadow-md"
-                  />
+
                 </div>
               </div>
 

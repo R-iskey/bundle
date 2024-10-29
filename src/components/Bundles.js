@@ -24,25 +24,20 @@ const Bundles = () => {
             {
               data.map((item) => (
 
-                <div className="group flex flex-col relative rounded-lg overflow-hidden focus-visible:outline-0 pointer"
-                     key={item.id}>
-                  <div
-                     className="h-64 md:h-80 block bg-gray-100 overflow-hidden relative group-hover:scale-110 transition duration-200 grayscale group-hover:grayscale-0">
-                    <img
-                      src={item.image}
-                      loading="lazy" alt="Photo by Minh Pham"
-                      className="w-full h-full object-cover object-center absolute  "/>
-                  </div>
-
-                  <div
-                    className="flex flex-col flex-1 px-4 sm:px-6 absolute bottom-0 bg-gradient-to-t from-gray-900 via-gray-900/80 to-transparent pb-4">
+                <div
+                  className="group flex flex-col rounded-lg overflow-hidden focus-visible:outline-0 pointer h-64 md:h-80 bg-gradient-to-b from-gray-900 via-indigo-900/80 to-indigo-800 px-4 sm:px-4 py-3 "
+                  key={item.id}>
+                  <div className={'flex pb-3 border-b border-white/10 py-1 items-center gap-3'}>
+                    <img src={`icons/${item.image}.svg`} className={'h-[72px] w-[72px]'}/>
                     <h2 className="text-white text-xl font-semibold mb-1">
                       {item.name}
                     </h2>
-                    <p className="text-white mb-4 text-md">{item.description}</p>
+                  </div>
+                  <p className="text-white mb-4 text-sm mt-6 flex-1">{item.description}</p>
+                  <div className={'pb-2'}>
                     <button
                       onClick={() => router.push(`/payment?productId=${item.id}`)}
-                      className="max-w-[190px] flex items-center justify-between  pl-3 pr-2 py-2 text-white font-lg font-semibold bg-gray-900 rounded-lg transition transform hover:scale-105 group-hover:bg-gradient-to-r group-hover:from-indigo-700 group-hover:via-indigo-800 group-hover:to-indigo-900 focus:outline-none focus:ring-4 focus:ring-indigo-500 shadow-lg hover:shadow-xl">
+                      className="max-w-[190px] flex items-center justify-between  pl-3 pr-2 py-2 text-white font-lg font-semibold bg-gray-900 rounded-lg transition transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-indigo-500 shadow-lg hover:shadow-xl">
                     <span className="flex items-center">
                       <FaShoppingCart className="mr-2" size={16}/>
                       Buy Now
