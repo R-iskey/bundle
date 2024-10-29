@@ -32,7 +32,7 @@ const PaymentPage = () => {
                   <h1 className="text-3xl font-semibold mb-4">{product.name}</h1>
                 </div>
                 <p className="text-gray-700 mb-4 mt-5 flex-1">{product.description}</p>
-                <div className="text-lg font-medium text-indigo-800 mb-6">
+                <div className="text-xl font-semibold text-indigo-800 mb-6">
                   Price: ${(product.price / 100).toFixed(2)}
                 </div>
                 <div className="w-full">

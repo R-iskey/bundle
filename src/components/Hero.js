@@ -43,7 +43,7 @@ const Hero = () => {
                               <p className="mt-6 text-sm sm:text-lg  text-gray-300 ">{item.description}</p>
                               <div className="mt-8 flex gap-x-4 justify-center lg:justify-start">
                                 <Link href={`/payment?productId=${item.id}`}
-                                      className="transition duration-200 inline-block rounded-lg bg-indigo-600 px-4 py-1.5 text-base font-semibold leading-7 text-white shadow-sm ring-1 ring-indigo-600 hover:bg-indigo-700 hover:ring-indigo-700 hover:scale-105">
+                                      className="transition duration-200 inline-block rounded-lg bg-indigo-600 px-7 py-1.5 text-base font-semibold leading-7 text-white shadow-sm ring-1 ring-indigo-600 hover:bg-indigo-700 hover:ring-indigo-700 hover:scale-105">
                                   Buy Now
                                   <span className="text-indigo-200" aria-hidden="true"> &rarr;</span>
                                 </Link>
